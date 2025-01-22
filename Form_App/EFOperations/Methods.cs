@@ -49,6 +49,19 @@ namespace Form_App.EFOperations
             return kullanici;
         }
 
+        public Kullanici GetKullanici(int pId)
+        {
+            using (PersonelContext db = new PersonelContext())
+            {
+                var kullanici = db.Kullanicis.FirstOrDefault(x => x.Id == pId);
+
+                if (kullanici == null)
+                return new Kullanici();
+                else
+                return kullanici;
+            }
+        }
+
         public void AddKullanici(PersonelDataModel item)
         {
             using (PersonelContext db = new PersonelContext())
@@ -67,12 +80,20 @@ namespace Form_App.EFOperations
             }
         }
 
-        public void DeleteKullanici(PersonelDataModel item)
+        public bool DeleteKullanici(int pId)
         {
             using (PersonelContext db = new PersonelContext())
             {
-                db.Remove(GetDataModel(item));
-                db.SaveChanges();
+                if (pId == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    db.Remove(GetKullanici(pId));
+                    db.SaveChanges();
+                    return true;
+                }
             }
         }
     }

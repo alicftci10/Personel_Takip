@@ -82,7 +82,7 @@
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(703, 598);
+            tabControl1.Size = new Size(975, 598);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -105,7 +105,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(695, 570);
+            tabPage1.Size = new Size(967, 570);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Kullanıcı Ara";
             tabPage1.UseVisualStyleBackColor = true;
@@ -116,8 +116,9 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(35, 315);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(639, 223);
+            dataGridView1.Size = new Size(894, 223);
             dataGridView1.TabIndex = 24;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // button1
             // 
@@ -486,7 +487,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(721, 36);
+            pictureBox1.Location = new Point(993, 36);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(71, 62);
             pictureBox1.TabIndex = 24;
@@ -495,7 +496,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(798, 36);
+            label8.Location = new Point(1070, 36);
             label8.Name = "label8";
             label8.Size = new Size(80, 15);
             label8.TabIndex = 24;
@@ -504,7 +505,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(798, 64);
+            label9.Location = new Point(1070, 64);
             label9.Name = "label9";
             label9.Size = new Size(32, 15);
             label9.TabIndex = 25;
@@ -515,7 +516,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(890, 635);
+            ClientSize = new Size(1168, 629);
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(pictureBox1);
