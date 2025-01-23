@@ -66,6 +66,7 @@
             pictureBox1 = new PictureBox();
             label8 = new Label();
             label9 = new Label();
+            button2 = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -85,6 +86,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(button2);
             tabPage1.Controls.Add(dataGridView1);
             tabPage1.Controls.Add(button1);
             tabPage1.Controls.Add(label6);
@@ -481,6 +483,23 @@
             label9.TabIndex = 25;
             label9.Text = "Yetki";
             // 
+            // button2
+            // 
+            button2.BackColor = SystemColors.ScrollBar;
+            button2.BackgroundImageLayout = ImageLayout.None;
+            button2.Cursor = Cursors.Hand;
+            button2.FlatAppearance.BorderColor = Color.Gray;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Segoe UI", 9F);
+            button2.ForeColor = SystemColors.ActiveCaptionText;
+            button2.Location = new Point(425, 39);
+            button2.Name = "button2";
+            button2.Size = new Size(129, 23);
+            button2.TabIndex = 26;
+            button2.Text = "FORMU TEMİZLE";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -551,5 +570,6 @@
         private Label label16;
         private Button button6;
         private Button button9;
+        private Button button2;
     }
 }

@@ -20,6 +20,7 @@ namespace Form_App
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.Text = "Personel Takip";
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -124,7 +125,13 @@ namespace Form_App
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string? Yetki = null;
+            string? tcKimlik, ad, soyad, kullaniciAdi, sifre, Yetki;
+            tcKimlik = textBox2.Text;
+            ad = textBox1.Text;
+            soyad = textBox3.Text;
+            kullaniciAdi = textBox4.Text;
+            sifre = textBox5.Text;
+            Yetki = null;
 
             if (radioButton1.Checked == true)
                 Yetki = "Yönetici";
@@ -132,23 +139,34 @@ namespace Form_App
             if (radioButton2.Checked == true)
                 Yetki = "Personel";
 
-            if (textBox1.Text == "")
-                textBox1.Text = null;
+            if (tcKimlik == "")
+                tcKimlik = null;
 
-            if (textBox2.Text == "")
-                textBox2.Text = null;
+            if (ad == "")
+                ad = null;
 
-            if (textBox3.Text == "")
-                textBox3.Text = null;
+            if (soyad == "")
+                soyad = null;
 
-            if (textBox4.Text == "")
-                textBox4.Text = null;
+            if (kullaniciAdi == "")
+                kullaniciAdi = null;
 
-            if (textBox5.Text == "")
-                textBox5.Text = null;
+            if (sifre == "")
+                sifre = null;
 
-            var list = ListSearch(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, Yetki);
+            var list = ListSearch(tcKimlik, ad, soyad, kullaniciAdi, sifre, Yetki);
             DataGridTable(list);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox2.Text = null;
+            textBox1.Text = null;
+            textBox3.Text = null;
+            textBox4.Text = null;
+            textBox5.Text = null;
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
         }
 
         private void DataGridTable(List<PersonelDataModel> List)
