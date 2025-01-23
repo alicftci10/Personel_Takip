@@ -1,4 +1,5 @@
 using Form_App.EFOperations;
+using DataAccess.Models;
 namespace Form_App
 {
     public partial class Form1 : Form
@@ -29,34 +30,43 @@ namespace Form_App
         private void button1_Click(object sender, EventArgs e)
         {
             Methods mt = new Methods();
-            foreach (var item in mt.GetAllKullaniciList())
+            var yönetici = mt.GetAllKullaniciList().FirstOrDefault(i => i.KullaniciAdi == textBox1.Text && i.Sifre == textBox2.Text && i.Yetki == "Yönetici" && radioButton1.Checked == true);
+            var personel = mt.GetAllKullaniciList().FirstOrDefault(i => i.KullaniciAdi == textBox1.Text && i.Sifre == textBox2.Text && i.Yetki == "Personel" && radioButton2.Checked == true);
+            if (yönetici != null)
             {
-                if (item.KullaniciAdi == textBox1.Text && item.Sifre == textBox2.Text && item.Yetki == "Yönetici" && radioButton1.Checked == true)
+                StaticModels.Id = yönetici.Id;
+                StaticModels.tcno = yönetici.Tcno;
+                StaticModels.ad = yönetici.Ad;
+                StaticModels.soyad = yönetici.Soyad;
+                StaticModels.yetki = yönetici.Yetki;
+                this.Hide();
+                Form2 frm2 = new Form2();
+                frm2.Show();
+            }
+            else if (personel != null)
+            {
+                StaticModels.Id = personel.Id;
+                StaticModels.tcno = personel.Tcno;
+                StaticModels.ad = personel.Ad;
+                StaticModels.soyad = personel.Soyad;
+                StaticModels.yetki = personel.Yetki;
+                this.Hide();
+                Form3 frm3 = new Form3();
+                frm3.Show();
+            }
+            else
+            {
+                hak--;
+                label6.Text = hak.ToString();
+                if (hak == 0)
                 {
-                    this.Hide();
-                    Form2 frm2 = new Form2();
-                    frm2.Show();
-                }
-                else if (item.KullaniciAdi == textBox1.Text && item.Sifre == textBox2.Text && item.Yetki == "Kullanýcý" && radioButton2.Checked == true)
-                {
-                    this.Hide();
-                    Form3 frm3 = new Form3();
-                    frm3.Show();
+                    button1.Enabled = false;
+                    MessageBox.Show("Giriþ hakký kalmadý!!", "Personel Takip Programý", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
                 }
                 else
                 {
-                    hak--;
-                    label6.Text = hak.ToString();
-                    if (hak == 0)
-                    {
-                        button1.Enabled = false;
-                        MessageBox.Show("Giriþ hakký kalmadý!!", "Personel Takip Programý", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        this.Close();
-                    }
-                    else
-                    {
-                        label4.Show();
-                    }
+                    MessageBox.Show("Kullanýcý Adý veya Þifre Yanlýþ", "Personel Takip Programý", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -72,12 +82,16 @@ namespace Form_App
             this.CancelButton = button2;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            label4.Hide();
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

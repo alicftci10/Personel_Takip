@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             label1 = new Label();
-            contextMenuStrip1 = new ContextMenuStrip(components);
             label2 = new Label();
             label3 = new Label();
             textBox2 = new TextBox();
@@ -39,7 +37,6 @@
             radioButton2 = new RadioButton();
             button1 = new Button();
             button2 = new Button();
-            label4 = new Label();
             label5 = new Label();
             label6 = new Label();
             SuspendLayout();
@@ -54,11 +51,6 @@
             label1.TabIndex = 1;
             label1.Text = "Kullanıcı Adı";
             label1.Click += label1_Click;
-            // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
             // 
             // label2
             // 
@@ -116,10 +108,10 @@
             radioButton2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             radioButton2.Location = new Point(249, 111);
             radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(83, 23);
+            radioButton2.Size = new Size(85, 23);
             radioButton2.TabIndex = 7;
             radioButton2.TabStop = true;
-            radioButton2.Text = "Kullanıcı";
+            radioButton2.Text = "Personel";
             radioButton2.UseVisualStyleBackColor = true;
             radioButton2.CheckedChanged += radioButton2_CheckedChanged;
             // 
@@ -129,11 +121,10 @@
             button1.BackgroundImageLayout = ImageLayout.None;
             button1.Cursor = Cursors.Hand;
             button1.FlatAppearance.BorderColor = Color.Gray;
-            button1.FlatAppearance.BorderSize = 1;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             button1.ForeColor = SystemColors.ActiveCaptionText;
-            button1.Location = new Point(139, 168);
+            button1.Location = new Point(139, 151);
             button1.Name = "button1";
             button1.Size = new Size(90, 44);
             button1.TabIndex = 8;
@@ -147,11 +138,10 @@
             button2.BackgroundImageLayout = ImageLayout.None;
             button2.Cursor = Cursors.Hand;
             button2.FlatAppearance.BorderColor = Color.Gray;
-            button2.FlatAppearance.BorderSize = 1;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             button2.ForeColor = SystemColors.ActiveCaptionText;
-            button2.Location = new Point(249, 168);
+            button2.Location = new Point(249, 151);
             button2.Name = "button2";
             button2.Size = new Size(90, 44);
             button2.TabIndex = 10;
@@ -159,23 +149,11 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label4.ForeColor = Color.Red;
-            label4.Location = new Point(76, 137);
-            label4.Name = "label4";
-            label4.Size = new Size(215, 19);
-            label4.TabIndex = 11;
-            label4.Text = "Kullanıcı Adı veya Şifre Yanlış!!";
-            label4.Click += label4_Click;
-            // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label5.Location = new Point(26, 228);
+            label5.Location = new Point(26, 219);
             label5.Name = "label5";
             label5.Size = new Size(82, 19);
             label5.TabIndex = 12;
@@ -186,7 +164,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label6.ForeColor = Color.Red;
-            label6.Location = new Point(139, 228);
+            label6.Location = new Point(139, 219);
             label6.Name = "label6";
             label6.Size = new Size(17, 19);
             label6.TabIndex = 13;
@@ -199,7 +177,6 @@
             ClientSize = new Size(390, 267);
             Controls.Add(label6);
             Controls.Add(label5);
-            Controls.Add(label4);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(radioButton2);
@@ -211,6 +188,7 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "Kullanıcı Giriş";
+            FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -219,7 +197,6 @@
         #endregion
 
         private Label label1;
-        private ContextMenuStrip contextMenuStrip1;
         private Label label2;
         private Label label3;
         private TextBox textBox2;
@@ -228,7 +205,6 @@
         private RadioButton radioButton2;
         private Button button1;
         private Button button2;
-        private Label label4;
         private Label label5;
         private Label label6;
     }

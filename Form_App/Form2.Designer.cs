@@ -62,8 +62,6 @@
             textBox12 = new TextBox();
             label16 = new Label();
             button6 = new Button();
-            button7 = new Button();
-            button8 = new Button();
             button9 = new Button();
             pictureBox1 = new PictureBox();
             label8 = new Label();
@@ -172,7 +170,7 @@
             radioButton2.Size = new Size(70, 19);
             radioButton2.TabIndex = 13;
             radioButton2.TabStop = true;
-            radioButton2.Text = "Kullanıcı";
+            radioButton2.Text = "Personel";
             radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton1
@@ -241,9 +239,11 @@
             // 
             textBox2.BorderStyle = BorderStyle.FixedSingle;
             textBox2.Location = new Point(142, 39);
+            textBox2.MaxLength = 11;
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(143, 23);
             textBox2.TabIndex = 5;
+            textBox2.KeyPress += textBox_sadeceSayi;
             // 
             // label1
             // 
@@ -273,13 +273,11 @@
             tabPage2.Controls.Add(textBox12);
             tabPage2.Controls.Add(label16);
             tabPage2.Controls.Add(button6);
-            tabPage2.Controls.Add(button7);
-            tabPage2.Controls.Add(button8);
             tabPage2.Controls.Add(button9);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(695, 570);
+            tabPage2.Size = new Size(967, 570);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Kullanıcı İşlemleri";
             tabPage2.UseVisualStyleBackColor = true;
@@ -336,7 +334,7 @@
             radioButton3.Size = new Size(70, 19);
             radioButton3.TabIndex = 37;
             radioButton3.TabStop = true;
-            radioButton3.Text = "Kullanıcı";
+            radioButton3.Text = "Personel";
             radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton4
@@ -407,9 +405,11 @@
             // 
             textBox12.BorderStyle = BorderStyle.FixedSingle;
             textBox12.Location = new Point(135, 26);
+            textBox12.MaxLength = 11;
             textBox12.Name = "textBox12";
             textBox12.Size = new Size(143, 23);
             textBox12.TabIndex = 29;
+            textBox12.KeyPress += textBox_sadeceSayi;
             // 
             // label16
             // 
@@ -429,44 +429,13 @@
             button6.FlatStyle = FlatStyle.Flat;
             button6.Font = new Font("Segoe UI", 9F);
             button6.ForeColor = SystemColors.ActiveCaptionText;
-            button6.Location = new Point(345, 323);
+            button6.Location = new Point(135, 323);
             button6.Name = "button6";
             button6.Size = new Size(129, 29);
             button6.TabIndex = 27;
             button6.Text = "FORMU TEMİZLE";
             button6.UseVisualStyleBackColor = false;
-            // 
-            // button7
-            // 
-            button7.BackColor = SystemColors.ScrollBar;
-            button7.BackgroundImageLayout = ImageLayout.None;
-            button7.Cursor = Cursors.Hand;
-            button7.FlatAppearance.BorderColor = Color.Gray;
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.Font = new Font("Segoe UI", 9F);
-            button7.ForeColor = SystemColors.ActiveCaptionText;
-            button7.Location = new Point(234, 323);
-            button7.Name = "button7";
-            button7.Size = new Size(83, 29);
-            button7.TabIndex = 26;
-            button7.Text = "SİL";
-            button7.UseVisualStyleBackColor = false;
-            // 
-            // button8
-            // 
-            button8.BackColor = SystemColors.ScrollBar;
-            button8.BackgroundImageLayout = ImageLayout.None;
-            button8.Cursor = Cursors.Hand;
-            button8.FlatAppearance.BorderColor = Color.Gray;
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Font = new Font("Segoe UI", 9F);
-            button8.ForeColor = SystemColors.ActiveCaptionText;
-            button8.Location = new Point(135, 323);
-            button8.Name = "button8";
-            button8.Size = new Size(82, 29);
-            button8.TabIndex = 25;
-            button8.Text = "GÜNCELLE";
-            button8.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
             // 
             // button9
             // 
@@ -484,19 +453,20 @@
             button9.TabIndex = 24;
             button9.Text = "KAYDET";
             button9.UseVisualStyleBackColor = false;
+            button9.Click += button9_Click;
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(993, 36);
+            pictureBox1.Location = new Point(1016, 36);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(71, 62);
+            pictureBox1.Size = new Size(100, 100);
             pictureBox1.TabIndex = 24;
             pictureBox1.TabStop = false;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(1070, 36);
+            label8.Location = new Point(1016, 162);
             label8.Name = "label8";
             label8.Size = new Size(80, 15);
             label8.TabIndex = 24;
@@ -505,7 +475,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(1070, 64);
+            label9.Location = new Point(1016, 190);
             label9.Name = "label9";
             label9.Size = new Size(32, 15);
             label9.TabIndex = 25;
@@ -516,13 +486,14 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(1168, 629);
+            ClientSize = new Size(1169, 629);
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(pictureBox1);
             Controls.Add(tabControl1);
             Name = "Form2";
             Text = "Form2";
+            FormClosing += Form2_FormClosing;
             Load += Form2_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
@@ -533,6 +504,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void Button9_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -574,8 +550,6 @@
         private TextBox textBox12;
         private Label label16;
         private Button button6;
-        private Button button7;
-        private Button button8;
         private Button button9;
     }
 }

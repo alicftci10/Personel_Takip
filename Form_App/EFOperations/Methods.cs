@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataAccess.Models;
 using DataAccess.DBContext;
 using DataAccess.DBModels;
+using System.Security.Cryptography;
 
 namespace Form_App.EFOperations
 {
@@ -56,9 +57,22 @@ namespace Form_App.EFOperations
                 var kullanici = db.Kullanicis.FirstOrDefault(x => x.Id == pId);
 
                 if (kullanici == null)
-                return new Kullanici();
+                    return new Kullanici();
                 else
-                return kullanici;
+                    return kullanici;
+            }
+        }
+
+        public Kullanici GetKullaniciTCNO(string pTCNO)
+        {
+            using (PersonelContext db = new PersonelContext())
+            {
+                var kullanici = db.Kullanicis.FirstOrDefault(x => x.Tcno == pTCNO);
+
+                if (kullanici == null)
+                    return new Kullanici();
+                else
+                    return kullanici;
             }
         }
 
@@ -66,8 +80,16 @@ namespace Form_App.EFOperations
         {
             using (PersonelContext db = new PersonelContext())
             {
-                db.Add(GetDataModel(item));
-                db.SaveChanges();
+                try
+                {
+                    db.Add(GetDataModel(item));
+                    db.SaveChanges();
+                    MessageBox.Show("Kullanıcı başarıyla eklendi.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Bir hata oluştu : " + ex.Message, "Uyarı!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -75,24 +97,32 @@ namespace Form_App.EFOperations
         {
             using (PersonelContext db = new PersonelContext())
             {
-                db.Update(GetDataModel(item));
-                db.SaveChanges();
+                try
+                {
+                    db.Update(GetDataModel(item));
+                    db.SaveChanges();
+                    MessageBox.Show("Kullanıcı başarıyla güncellendi.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Bir hata oluştu : " + ex.Message, "Uyarı!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
-        public bool DeleteKullanici(int pId)
+        public void DeleteKullanici(int pId)
         {
             using (PersonelContext db = new PersonelContext())
             {
-                if (pId == 0)
-                {
-                    return false;
-                }
-                else
+                try
                 {
                     db.Remove(GetKullanici(pId));
                     db.SaveChanges();
-                    return true;
+                    MessageBox.Show("Kullanıcı başarıyla silindi.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Bir hata oluştu : " + ex.Message, "Uyarı!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
